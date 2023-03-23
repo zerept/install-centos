@@ -4,9 +4,9 @@ echo "atualizando sistema" && sleep 1
 #atualizando repositorio
 sudo yum update -y
 #atualizando sistema
-sudo apt upgrade -y 
+sudo yum upgrade -y 
 #limpando arquivos temporarios e obsoletos 
-sudo apt clean -y
+sudo yum clean -y
 
 #instalando docker
 echo "instalando utilitarios" && sleep 1
@@ -20,3 +20,9 @@ sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 
 echo "ligando e ativando docker" && sleep 1
 sudo systemctl start docker && sudo systemctl enable docker
+
+echo "adicionando privilegios de usuário" && sleep 1
+sudo usermod -aG docker $USER
+
+echo "Reiniciando" && sleep 1
+sudo reboot
